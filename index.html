@@ -10,6 +10,9 @@
 <body>
   <div id="app">{{message}}</div>
   <input type="button" onclick="changeContent()">
+  <div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+  </div>
   <script type="text/javascript">
     let app = new Vue({
       el: "#app",
@@ -20,6 +23,12 @@
     let changeContent = ()=>{
       app.$data.message = "hello again"
     }
+    let app3 = new Vue({
+      el: "#app-3",
+      data: {
+        seen: true
+      }
+    })
   </script>
 </body>
 </html>
