@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">{{message}}</div>
+  <input type="button" onclick="changeContent()" value="点击改变欢迎内容">
+  <div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+  </div>
+  <input type="button" onclick="hide_seen()" value="点击隐藏文字提示">
+  <div id="app-4">
+    <ol>
+      <li v-for="todo in todos">
+        {{todo.text}}
+      </li>
+    </ol>
+  </div>
+  <div id="app-5">
+   <p>{{message}}</p>
+   <button v-on:click="reverseMessage">逆转消息</button>
+  </div>
+  <div id="app-6">
+   <p>{{message}}</p>
+   <input v-model="message">
+  </div>
+  <div id="app-7">
+    <ol>
+      <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+      </todo-item>
+    </ol>
+  </div>
+  <div id="app-8">
+    <p>{{foo}}</p>
+    <button v-on:click="foo = 'baz'">Change it</button>
+  </div>
+  <script src="../js/demo.js"></script>
+</body>
+</html>

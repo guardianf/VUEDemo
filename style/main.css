@@ -1,0 +1,6 @@
+* {padding: 0;margin: 0;}
+#app {display: flex;}
+.vm-nav {width: 150px;padding-left : 20px;list-style: none;}
+.vm-nav ol {list-style: none;}
+.vm-nav li {line-height: 40px;pointer: cursor;}
+.vm-nav li:hover {color: red;}
