@@ -1,2 +1,5 @@
-// import menu1 from "../asset/menu1.js";
-export var m = 1;
+import {menu1} from "../assets/menu1.js";
+export default {}
+export function a() {
+  console.log(menu1);
+}
