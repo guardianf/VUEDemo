@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span>Message:{{msg}}</span>
+    </div>
+    <div id="app-2">
+        <span v-once>这个将不会改变:{{msg}}</span>
+    </div>
+    <div id="app-3">
+        <p>Using mustaches:{{rawHtml}}</p>
+        <p>Using v-html directive:<span v-html="rawHtml"></span></p>
+        <div v-bind:id="dynamicId"></div>
+        <button v-bind:disabled="isButtonDisabled">Button</button>
+    </div>
+    <div id="app-4">
+        <p>number+1:{{number+1}}</p>
+        <p>isOk:{{ok?"YES":"NO"}}</p>
+        <p>reverseMessage:{{message.split('').reverse().join('')}}</p>
+        <div v-bind:id="'list-'+id"></div>
+        <p v-if="seen">now you see me</p>
+    </div>
+    <div id="app-5">
+        <a v-bind:href="url">url</a>
+        <a v-on:click="dosomething">dosomething</a>
+    </div>
+    <div id="app-6">
+        <form v-on:submit.prevent="onSubmit">submit</from>
+    </div>
+    <div id="app-7">
+        <p>Original message:"{{message}}"</p>
+        <p>Computed reersed message: "{{reversedMessage}}"</p>
+    </div>
+    <div id="app-8">
+        <p>reversed message: "{{reversedMessage()}}"</p>
+        <p>now:"{{now}}"</p>
+    </div>
+    <script src="../js/demo2.js"></script>
+</body>
+</html>

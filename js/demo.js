@@ -64,8 +64,15 @@
     let app8_obj = {
       foo: "bar"
     };
-    Object.freeze(app8_obj)
+//     Object.freeze(app8_obj)
     let app8 = new Vue({
       el: "#app-8",
       data: app8_obj
+    });
+    let app9 = new Vue({
+        el: "#app-9",
+        data:{a:1},
+        created(){
+            console.log('a is: ' + this.a)
+        }
     })
