@@ -22,6 +22,25 @@
         </p>
         <p>{{answer}}</p>
     </div>
+    <div id="app-3">
+        <div class="static" v-bind:class="{active: isActive,'text-danger': hasError}">绑定HTML Class-对象语法1</div>
+        <div v-bind:class="classObject">绑定HTML Class-对象语法2</div>
+    </div>
+    <div id="app-4">
+        <div v-bind:class="classObject">绑定HTML Class-对象语法</div>
+        <div v-bind:class="[activeClass, errorClass]">绑定HTML Class-数组语法</div>
+        <div v-bind:class="[isActive?activeClass:'',errorClass]">绑定HTML Class-三元表达式</div>
+    </div>
+    <div id="app-5">
+        <my-component class="baz boo"></my-component>
+        <my-component v-bind:class="{active: isActive}">component isactive</component>
+    </div>
+    <div id="app-6">
+        <div v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}">绑定内联样式</div>
+        <div :style="styleObject">绑定内联样式-对象</div>
+        <div :style="[baseStyles, overridingStyles]">绑定内联样式-数组</div>
+        <div :style="{display: ['-webkit-box', '-ms-flexbox', 'flex']}">绑定内联样式-多重值</div>
+    </div>
     <script src="../js/demo3.js"></script>
 </body>
 </html>

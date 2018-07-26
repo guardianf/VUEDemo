@@ -70,3 +70,58 @@ let app2 = new Vue({
         }
     }
 });
+let app3 = new Vue({
+    el: "#app-3",
+    data: {
+        isActive: true,
+        hasError: false,
+        classObject: {
+            active: true,
+            'text-danger': false
+        }
+    }
+});
+let app4 = new Vue({
+    el: "#app-4",
+    data: {
+        isActive: true,
+        error: null,
+        activeClass: 'active',
+        errorClass: 'text-danger'
+    },
+    computed:{
+        classObject(){
+            return {
+                active: this.isActive && !this.error,
+                'text-danger': this.error && !this.error.type === 'fatal'
+            }
+        }
+    }
+})
+Vue.component('my-component', {
+    template: '<p class="foo bar">Hi</p>'
+})
+let app5 = new Vue({
+    el: "#app-5",
+    data: {
+        isActive: true
+    }
+})
+
+let app6 = new Vue({
+    el: "#app-6",
+    data: {
+        activeColor: 'red',
+        fontSize: 30,
+        styleObject: {
+            color: 'red',
+            fontSize: '13px'
+        },
+        baseStyles: {
+            color: 'blue'
+        },
+        overridingStyles: {
+            transform: 'rotate(-180deg)'
+        }
+    }
+})
