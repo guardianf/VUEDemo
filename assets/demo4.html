@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+    <div id="app-1">
+        <h1 v-if="ok">Yes</h1>
+        <h1 v-else>No</h1>
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+        <div v-if="Math.random() > 0.5">
+            Now you see me
+        </div>
+        <div v-else>
+            Now you don't
+        </div>
+        <div v-if="type === 'A'">
+            A
+        </div>
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else-if="type === 'C'">
+            C
+        </div>
+        <div v-else>
+            Not A/B/C
+        </div>
+        切换不会渲染input
+        <br />
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address">
+        </template>
+        <button v-on:click="toggle()">toggle login type</button>
+        <br />
+        增加key之后，每次切换都渲染input
+        <br />
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username" key="username-input">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key='email-input'>
+        </template>
+        <button v-on:click="toggle()">toggle login type</button>
+    </div>
+    <div id='app-2'>
+        <h1 v-show='ok'>Hello!</h1>
+    </div>
+    <ul id='app-3'>
+        <li v-for='item in items'>
+            {{item.message}}
+        </li>
+    </ul>
+    <ul id='app-4'>
+        <li v-for='(item, index) in items'>
+            {{parentMessage}} - {{index}} - {{item.message}}
+        </li>
+    </ul>
+    <ul id='app-5'>
+        <li v-for='(item, index) of items'>
+            {{parentMessage}} - {{index}} - {{item.message}}
+        </li>
+    </ul>
+    <ul id='app-6' class='demo'>
+        <li v-for="value in object">{{value}}</li>
+    </ul>
+    <ul id='app-7' class='demo'>
+        <li v-for="(value, key) in object">
+            {{key}}:{{value}}
+        </li>
+    </ul>
+    <ul id='app-8' class='demo'>
+        <li v-for="(value, key, index) in object">
+            {{index}}. {{key}}:{{value}}
+        </li>
+    </ul>
+    <ul id='app-9' class='demo'>
+        <li v-for="item in object" :key="item.id">
+            {{item}}
+        </li>
+    </ul>
+    <div id="app-10">
+        <ul>
+            <li v-for="item in items" :key="item.id">
+                {{item}}
+            </li>
+        </ul>
+        <input v-model="index">
+        <input v-model="val">
+        <br />
+        <button @click="replace_1()">替换列表内容_1</button>
+        <button @click="replace_2()">替换列表内容_2</button>
+        <button @click="replace_3()">替换列表内容_3</button>
+        <button @click="cut()">剪切列表</button>
+    </div>
+    <div id='app-11'>
+        <ul>
+            <li v-for='(item, key) in items'>{{key}}-{{item}}</li>
+        </ul>
+        <input v-model='key' placeholder='输入属性名' />
+        <input v-model='value' placeholder='输入属性值' />
+        <br />
+        <button @click='add_1()'>渲染后增加属性</button>
+        <button @click='add_2()'>渲染后增加响应式属性1</button>
+        <button @click='add_3()'>渲染后增加响应式属性2</button>
+    </div>
+    <div id='app-12'>
+      <ul>
+        <li v-for='(item, key) of userProfile'>
+          {{key}}:{{item}}
+        </li>
+      </ul>
+      <button @click="change_1()">对象的更改-非响应式</button>
+      <button @click="change_2()">对象的更改-响应式</button>
+    </div>
+    <script src="../js/demo4.js"></script>
+</body>
+</html>
