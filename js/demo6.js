@@ -13,4 +13,29 @@ let app = new Vue({
         }
     }
 });
-app.greet();
+// app.greet();
+
+let app2 = new Vue({
+    el: '#app-2',
+    methods: {
+        say(message){
+            alert(message)
+        },
+        warn(message, event){
+            if(event) event.preventDefault();
+            alert(message);
+        }
+    }
+});
+
+let app3 = new Vue({
+    el: '#app-3',
+    methods: {
+        doThis(){
+            alert('dothis')
+        },
+        doThat(){
+            alert('dothat')
+        }
+    }
+})

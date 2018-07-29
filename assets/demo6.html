@@ -14,8 +14,20 @@
         <br />
         <button @click='greet'>Greet</button>
     </div>
-    <div id='app-2'>
+    <form id='app-2'>
         <button @click='say("hi")'>内联浏览器方法Say hi</button>
+        <button @click='say("what")'>内联浏览器方法Say what</button>
+        <button @click='warn("form cannot be submitted yes.", $event)'>传递event-submit</button>
+    </form>
+    <div id='app-3'>
+        <!-- 研究修饰符的顺序 -->
+        <a @click.stop='doThis'>.stop</a>
+        <form @submit.prevent='onSubmit'>.prevent</form>
+        <a @click.stop.prevent='doThat'>.stop.prevent</a>
+        <form @submit.prevent>only.prevent</form>
+        <div @click.capture='doThis'>.capture</div>
+        <div @click.self='doThat'>.self</div>
+        <div @click.once='doThis'>.once</div>
     </div>
     <script src="../js/demo6.js"></script>
 </body>
