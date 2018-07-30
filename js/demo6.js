@@ -36,6 +36,37 @@ let app3 = new Vue({
         },
         doThat(){
             alert('dothat')
+        },
+        onScroll(){
+            console.log('onscroll')
+        },
+        submit(e){
+            let key = e.keyCode||e.which
+            alert(key+':'+e.target.value)
+        },
+        changeModified(){
+            Vue.config.keyCodes.f1 = 112;
+        },
+        onPageDown(){
+            alert('pagedown')
+        },
+        clear(){
+            console.clear();
+        },
+        onClick(){
+            alert('on click')
+        },
+        onCtrlClick(){
+            alert('on ctrl click')
+        },
+        onLeftClick(){
+            alert('on mouse left click')
+        },
+        onRightClick(){
+            alert('on mouse right click')
+        },
+        onMiddleClick(){
+            alert('on mouse middle click')
         }
     }
 })

@@ -27,7 +27,36 @@
         <form @submit.prevent>only.prevent</form>
         <div @click.capture='doThis'>.capture</div>
         <div @click.self='doThat'>.self</div>
+        <!-- 新增修饰符 -->
         <div @click.once='doThis'>.once</div>
+        <div v-on:scroll='onScroll'>.passive</div>
+        <!-- 按键修饰符 -->
+        <!-- tab的时候只有tab进入input才会被capture -->
+        <input @keyup.13='submit($event)'
+               @keyup.enter='submit($event)'
+               @keyup.tab='submit($event)'
+               @keyup.delete='submit($event)'
+               @keyup.esc='submit($event)'
+               @keyup.space='submit($event)'
+               @keyup.up='submit($event)'
+               @keyup.down='submit($event)'
+               @keyup.left='submit($event)'
+               @keyup.right='submit($event)'>
+        <button @click='changeModified'>自定义f1的按键修饰符</button>
+        <input @keyup.page-down='onPageDown'>
+        <!-- 系统修饰符 -->
+        <!-- Alt + C -->
+        <input @keyup.alt.67='clear'>
+        <!-- Ctrl + Click -->
+        <div @click.ctrl='doSomeThing'>Do something</div>
+        <button @click.ctrl='onClick'>A</button>
+        <button @click.ctrl.exact='onCtrlClick'>A</button>
+        <button @click.exact='onClick'>A</button>
+        <!-- 鼠标按钮修饰符 -->
+        <p>鼠标修饰符</p>
+        <button @click.left='onLeftClick'>.left</button>
+        <button @click.right='onRightClick'>.right</button>
+        <button @click.middle='onMiddleClick'>.middle</button>
     </div>
     <script src="../js/demo6.js"></script>
 </body>
