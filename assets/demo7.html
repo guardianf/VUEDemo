@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+    <div id='app-1'>
+        <p>基础用法</p>
+        <input v-model='message_1' placeholder='edit me'>
+        <p>Message is: {{message_1}}</p>
+        <textarea v-model='multimessage' placeholder='add multiple lines'></textarea>
+        <br />
+        <span>Multiline message is:</span>
+        <p style='white-space: pre-line;'>{{multimessage}}</p>
+        <!-- 复选框 -->
+        <input type='checkbox' id='checkbox' v-model='checked'>
+        <label for='checkbox'>{{checked}}</label>
+        <br>
+        <!-- 多个复选框 -->
+        <input type='checkbox' id='jack' value='Jack' v-model='checkedNames'>
+        <label for='jack'>Jack</label>
+        <input type='checkbox' id='john' value='John' v-model='checkedNames'>
+        <label for='john'>John</label>
+        <input type='checkbox' id='mike' value='Mike' v-model='checkedNames'>
+        <label for='mike'>Mike</label>
+        <br />
+        <span>Checked names: {{checkedNames}}</span>
+        <br />
+        <!-- 单选框 -->
+        <input type='radio' id='one' value='One' v-model='picked'>
+        <label for='one'>One</label>
+        <br>
+        <input type='radio' id='two' value='Two' v-model='picked'>
+        <label for='two'>Two</label>
+        <br>
+        <span>Picked:{{picked}}</span>
+        <br>
+        <!-- 选择框 -->
+        <select v-model='selected'>
+            <option disabled value=''>请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected:{{selected}}</span>
+        <br>
+        <!-- 选择框-复选 -->
+        <select v-model='multiselected' multiple style='width: 50px;'>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <br>
+        <span>Selected:{{multiselected}}</span>
+        <br>
+        <!-- v-for渲染动态选项 -->
+        <select v-model='selected_2'>
+           <option v-for='option in options' :value='option.value'>
+                {{option.text}}
+            </option>
+        </select>
+        <span>Selected:{{selected_2}}</span>
+        <br>
+    </div>
+    <div id='app-2'>
+        <p>值绑定</p>
+        <input type='radio' id='a' v-model='picked' value='a'>
+        <label for='a'>A</label>
+        <p>value: {{picked}};typeof: {{typeof picked}}</p>
+        <input type='checkbox' v-model='toggle' id='toggle'>
+        <label for='toggle'>Toggle</label>
+        <p>value:{{toggle}};typeof:{{typeof toggle}}</p>
+        <select v-model='selected'>
+            <option value='abc'>ABC</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+        </select>
+        <p>value:{{selected}};typeof:{{typeof selected}}</p>
+        <input 
+            type='checkbox'
+            v-model='toggle_2'
+            true-value='yes'
+            false-value='no'
+        >
+        <label for='toggle_2'>Toggle_2</label>
+        <p>value:{{toggle_2}};typeof:{{typeof toggle_2}}</p>
+        <input type='radio' v-model='pick' :value='a'>
+        <label for='pick'>Pick</label>
+        <p>pick:{{pick}}</p>
+        <p>a:{{a}}</p>
+        <select v-model='selected'>
+            <!-- 内联对象字面量 -->
+            <option :value='{number: 123}'>123</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+        <p>typeof selected:{{typeof selected}}</p>
+        <p>selected.number:{{selected.number}}</p>
+    </div>
+    <script src="../js/demo7.js"></script>
+</body>
+</html>
