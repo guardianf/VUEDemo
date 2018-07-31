@@ -103,6 +103,14 @@
         <p>typeof selected:{{typeof selected}}</p>
         <p>selected.number:{{selected.number}}</p>
     </div>
+    <div id='app-3'>
+      <p>修饰符</p>
+      <!-- lazy在你输入的时候不会同步数据，只有在change的时候才会修改 -->
+      <input v-model.lazy='msg' @keypress='log("msg")'>
+      <input v-model.number='age' type='number'>
+      <!-- 过滤首位空白字符 -->
+      <input v-model.trim='msg_2'>
+    </div>
     <script src="../js/demo7.js"></script>
 </body>
 </html>
