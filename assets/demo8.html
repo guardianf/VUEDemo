@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+    <div id='app-1'>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <br>
+<!--         <blog-post 
+            v-for='post in posts'
+            :key='post.id'
+            :title='post.title'
+        ></blog-post> -->
+        <!-- 重构的blog-post -->
+<!--         <blog-post-2
+            v-for='post in posts'
+            :key='post.id'
+            :post='post'
+        ></blog-post-2> -->
+        <!-- 通过事件向父级组件发送消息 -->
+<!--         <div :style="{fontSize: postFontSize + 'em'}">
+            <blog-post
+                v-for='post in posts'
+                :key='post.id'
+                :post='post'
+                v-on:enlarge-text='postFontSize += 0.1'
+            ></blog-post>
+        </div> -->
+        <!-- 通过事件抛出一个值 -->
+        <div :style="{fontSize: postFontSize + 'em'}">
+<!--             <blog-post
+                v-for='post in posts'
+                :key='post.id'
+                :post='post'
+                v-on:enlarge-text='postFontSize += $event'
+            ></blog-post> -->
+            <blog-post
+                v-for='post in posts'
+                :key='post.id'
+                :post='post'
+                v-on:enlarge-text='onEnlargeText'
+            ></blog-post>
+        </div>
+    </div>
+    <div id='app-2'>
+        <p>在组件上使用v-model</p>
+        <p>简单的v-model</p>
+        <input v-model='searchText'>
+        <p>v-model等价的写法</p>
+        <input 
+            :value='searchText'
+            @input='searchText = $event.target.value'
+        >
+        <p>不使用v-model的组件</p>
+        <custom-input
+            :value='searchText'
+            @input='searchText = $event'
+        >
+        <p>使用v-model的组件</p>
+        <costom-input2 v-model='searchText'></custom-input2>
+    </div>
+    <div id='app-3'>
+        <p>通过插槽分发内容</p>
+        <alert-box>
+            Something bad happened
+        </alert-box>
+    </div>
+    <script src="../js/demo8.js"></script>
+</body>
+</html>
