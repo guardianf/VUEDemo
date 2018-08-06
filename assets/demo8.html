@@ -72,6 +72,11 @@
             Something bad happened
         </alert-box>
     </div>
+    <div id='app-4'>
+        <p>动态组件</p>
+        <button @click='currentTab = tab' v-for='tab in tabs'>{{tab}}</button>
+        <component :is='currentTabComponent'></component>
+    </div>
     <script src="../js/demo8.js"></script>
 </body>
 </html>

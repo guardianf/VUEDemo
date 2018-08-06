@@ -111,7 +111,30 @@ Vue.component('alert-box', {
         </div>
     `
 });
-
 let app3 = new Vue({
     el: '#app-3'
+});
+
+
+Vue.component('tab-home', {
+    template: '<div>this is Home component</div>'
+});
+Vue.component('tab-posts', {
+    template: '<div>this is Posts component</div>'
+});
+Vue.component('tab-archive', {
+    template: '<div>this is Archive component</div>'
+});
+let app4 = new Vue({
+    el: '#app-4',
+    data: {
+        currentTab: 'Home',
+        tabs: ['Home', 'Posts', 'Archive']
+    },
+    computed: {
+        currentTabComponent(){
+            return 'tab-' + this.currentTab.toLowerCase()
+        }
+    }
 })
+
