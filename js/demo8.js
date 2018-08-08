@@ -87,7 +87,7 @@ Vue.component('custom-input', {
     >
    `
 });
-Vue.component('custon-input2', {
+Vue.component('custom-input2', {
     props: ['value'],
     template: `
         <input
