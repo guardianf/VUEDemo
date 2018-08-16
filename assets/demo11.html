@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+    <h1>自定义事件</h1>
+    <div id='app-1'>
+        <my-component @my-event='doSomething'></my-component>
+        <base-checkbox v-model='lovingVue'></base-checkbox>
+        <h2>将原生事件绑定到组件</h2>
+        <base-input @keyup.enter='onFocus' label='no native'></base-input>
+        <base-input @keyup.enter.native='onFocus' label='.native'></base-input>
+        <strong>.native</strong>
+        <h2>.sync修饰符</h2>
+        <label>this is Vue data:{{doc.title}}</label>
+        <text-document v-bind:title.sync='doc.title'></text-document>
+        <strong>.sync用来更新父组件的值</strong>
+    </div>
+    <script src="../js/demo11.js"></script>
+</body>
+</html>
