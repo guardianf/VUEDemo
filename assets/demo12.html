@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+    <h1>插槽</h1>
+    <div id='app-1'>
+        <h2>插槽内容</h2>
+        <navigation-link url='/profile'>
+          <span class='fa fa-user'></span>
+          Your Profile
+        </navigation-link>
+        <br>
+        <strong>slot就是用来放置component标签内部的内容的。不带slot的component，标签中间的内容会被直摈弃掉</strong>
+        <h2>具名插槽</h2>
+        <base-layout>
+          <template slot='header'>
+            <a>Here might be a page title</a>
+          </template>
+          <p>A paragraph for the main content</p>
+          <p>And another one.</p>
+          <template slot='footer'>
+            <a>Here's some contact info</a>
+          </template>
+        </base-layout>
+        <sup>另一种方式使用具名slot</sup>
+        <base-layout>
+          <a slot='header'>Here might be a page title</a>
+          <p>A Paragraph for the main content.</p>
+          <p>And another one.</p>
+          <p slot='footer'>Here's some contact info.</p>
+        </base-layout>
+        <h2>插槽的默认内容</h2>
+        <submit-button></submit-button>
+        <submit-button>Upload</submit-button>
+        <submit-button>Save</submit-button>
+        <br>
+        <strong>template中的slot中间的内容是默认值，可以被替换掉</strong>
+        <br>
+        <navigation-link url='/profile'>
+          Logged in as {{user.name}}
+        </navigation-link>
+    </div>
+    <div id='app-2'>
+      <h2>作用域插槽</h2>
+      <todo-list v-bind:todos='todos'>
+        <!-- 将slotProps定义为插槽作用域的名字 -->
+        <template slot-scope='slotProps'>
+         <!-- 将待办项自定义一个模板，-->
+         <!-- 通过slotProps定制每个待办项。-->
+         <span v-if='slotProps.todo.isComplete'>✓</span>
+         {{slotProps.todo.text}}
+       </template>
+      </todo-list>
+      <h3># 解构slot-scope</h3>
+      <todo-list v-bind:todos='todos'>
+        <template slot-scope='tmp'>
+         <span v-if='tmp.todo.isComplete'>✓</span>
+         {{tmp.todo.id}} - {{tmp.todo.text}}
+       </template>
+      </todo-list>
+      <strong>slot-scope后面的值就可以通过声明slotProps(变量，slot模版中需要使用数据slotProps.prop.attr)或者使用‘{var}’(var.attr)的方式来声明一个变量来使用父组件中的值</strong>
+    </div>
+    <script src="../js/demo12.js"></script>
+</body>
+</html>
