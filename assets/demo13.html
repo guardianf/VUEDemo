@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <h1>动态组件&异步组件</h2>
+  <div id='app-1'>
+    <h2>动态组件</h2>
+    <button
+      v-for='tab in tabs'
+      :key='tab'
+      @click='currentTab = tab'
+    >
+      {{tab}}
+    </button>
+    <component
+      :is='currentTabComponent'
+    ></component>
+    <h2>使用keep-alive标签</h2>
+    <button
+      v-for='tab in tabs'
+      :key='tab.id'
+      @click='currentTab = tab'
+    >
+      {{tab}}
+    </button>
+    <keep-alive>
+      <component :is='currentTabComponent'></component>
+    </keep-alive>
+  </div>
+  <div id='app-2'>
+    <h2>异步组件</h2>
+    <async-example>
+    </async-example>
+    <h3># 处理加载状态</h3>
+    
+  </div>
+  <script src="../js/demo13.js"></script>
+</body>
+</html>
