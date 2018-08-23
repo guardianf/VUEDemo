@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+  * {padding: 0 default;margin: 0;}
+  </style>
+  <script type='text/x-template' id='hello-word-template'>
+    <p>Hello world</p>
+  </script>
+</head>
+<body>
+  <h1>处理边界情况</h1>
+  <div id='app-1'>
+    <h2>访问元素&组件</h2>
+    <h3># 访问根实例</h3>
+    <p>见控制台</p>
+    <h3># 访问父级组件实例</h3>
+    <google-map>
+      <google-map-markers :places='iceCreamShops'></google-map-markers>
+    </google-map>
+    <h4>父与子组件中间有夹层</h4>
+    <google-map>
+      <google-map-region :shape='cityBoundaries'>
+        <google-map-markers :places='iceCreamShops'></google-map-markers>
+      </google-map-region>
+    </google-map>
+    <strong>由$parent来获取属性的话，在支持多层级hack的时候会显得很不方便</strong>
+    <h3># 访问子组件实例或子元素</h3>
+    <query-bar @click='click'>
+      <base-input ref='input'></base-input>
+    </query-bar>
+    <br>
+    <strong>$refs的获取只有在root(也就是new Vue)才能使用</strong>
+    <h3># 依赖注入</h3>
+    <provider>
+      <injection></injection>
+    </provider>
+    <strong>在provide类似于()=>{}在函数中使用的this指代的是inject的component</strong>
+  </div>
+  <div id='app-2'>
+    <h2>程序化的事件侦听器</h2>
+    <listener-once></listener-once>
+    <strong>$on $once $off三个的eventName参数为‘hook:钩子周期函数’</strong>
+    <h2>循环引用</h2>
+    <h3># 递归组件</h3>
+    <stackflow :checked='stackflow'></stackflow>
+    <strong>组件的递归调用还是需要使用v-if/v-else等来停止它无尽的调用</strong>
+    <h3># 组件之间的循环引用</h3>
+    <tree-folder-contents :children='menu'></tree-folder-contents>
+    <strong>在使用webpack等打包工具的时候，这里互相调用的component就会产生报错，如果遇到这种情况了，还是需要再看一下文档</strong>
+    <h2>模版定义的替代品</h2>
+    <h3># 内联模版</h3>
+    <component-inline inline-template>
+        <div>
+            <p>These are compiled as the component's own template.</p>
+            <p>Not parent's transclusion content.</p>
+        </div>
+    </component-inline>
+    <strong>内联样式的作用域很难理解，有空再做新的demo来深度理解这个特性</strong>
+    <h3># X-Templates</h3>
+    <hello-word></hello-word>
+    <strong>使用sctipt的x-template模板必须在初始化之前的script中定义，而且由于其模板与定义分开的特性，最好还是避免使用</strong>
+  </div>
+  <div id='app-3'>
+    <h2>控制更新</h2>
+    <h3># 强制更新</h3>
+    label:{{label.join()}}
+    <button @click='changeLabel'>changeLabel</button>
+    <button @click='changeLabel2'>changeLabel(force update)</button>
+    <strong>可以看得到虽然changeLabel没有更新view但是值还是改变的</strong>
+    <h3># 通过v-once创建低开销的静态组件</h3>
+    <terms-of-service :message='message'></terms-of-service>
+    <button @click='changeOnce'>changeOnceComponent</button>
+    <strong>v-once的静态组件无法被更新值，即使是使用了forceUpdate也是不能够更新的。<strong>
+  </div>
+  <script src="../js/demo14.js"></script>
+</body>
+</html>
