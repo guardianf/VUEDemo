@@ -124,8 +124,69 @@
         {{ isEditing ? 'Save': 'Edit'}}
       </button>
     </transition>
+    <p>v-if多元素过渡绑定多动态属性的单个元素过渡</p>
+    <button @click='docState = randomSwitch()'>switcher</button>
+    <transition>
+      <button v-if='docState == "saved"' key='saved'>
+        Edit
+      </button>
+      <button v-if='docState == "edited"' key='edited'>
+        Save
+      </button>
+      <button v-if='docState == "editing"' key='editing'>
+        Cancel
+      </button>
+    </transition>
+    <label>可重写为</label>
+    <transition>
+      <button :key='docState'>
+        {{buttonMessage}}
+      </button>
+    </transition>
+    <h3># 过渡模式</h3>
+    <transition name='fade'>
+      <button @click='on = !on' v-if='on' :key='on'>
+        On
+      </button>
+      <button @click='on = !on' v-else :key='on'>
+        Off
+      </button>
+    </transition>
+    <transition name='fade'>
+      <button :key='on' @click='on = !on'>
+        {{on? 'On': 'Off'}}
+      </button>
+    </transition>
+    <p>
+      <strong>transition中想要做动画的控件的key最好是同一个，只有采用了同一个key才会有动画效果</strong>
+    </p>
+    <br/>
+    <label>mode: out-in</label>
+    <transition name='fade' mode='out-in'>
+      <button :key='on' @click='on = !on'>
+        {{on? 'On': 'Off'}}
+      </button>
+    </transition>
+    <br/>
+    <label>mode: in-out</label>
+    <transition name='fade' mode='in-out'>
+      <button :key='on' @click='on = !on'>
+        {{on? 'On': 'Off'}}
+      </button>
+    </transition>
   </div>
-
+  <div id='app-5'>
+    <h2>多个组件的过渡</h2>
+    <input type='radio' @click='view="v-a"' name='view'><label>A</label>
+    <input type='radio' @click='view="v-b"' name='view'><label>B</label>
+    <transition name='component-fade' mode='out-in'>
+      <component v-bind:is='view'></component>
+    </transition>
+  </div>
+  <div id='app-6'>
+    <h2>列表过渡</h2>
+    
+  </div>
   <script src="../js/demo15.js"></script>
 </body>
 </html>

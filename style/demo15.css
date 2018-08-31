@@ -20,3 +20,6 @@
   50% {transform: rotate(135deg);transform-origin: 20px 20%;}
   100% {transform: rote(45deg);transform-origin: 20px 20%;}
 }
+
+.switchOn1-enter-active, .switchOn1-leave-active {transition: opacity .5s;}
+.switchOn1 {opacity: 0;}

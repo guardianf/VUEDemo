@@ -95,6 +95,41 @@ let app3 = new Vue({
 let app4 = new Vue({
     el: '#app-4',
     data: {
-        isEditing: false
+        isEditing: false,
+        docState: 'saved',
+        on: true
+    },
+    computed: {
+        buttonMessage(){
+            switch(this.docState){
+                case 'saved': return 'Edit';break;
+                case 'edited': return 'Save';break;
+                case 'editing': return 'Cancel';break;
+            }
+        }
+    },
+    methods: {
+        randomSwitch(){
+            switch(Math.floor(Math.random()*3)){
+                case 0: return 'saved';break;
+                case 1: return 'edited';break;
+                case 2: return 'editing';break;
+            }
+        }
+    }
+});
+
+let app5 = new Vue({
+    el: '#app-5',
+    data: {
+        view: 'v-a'
+    },
+    components: {
+        'v-a': {
+            template: '<div>This is Component A</div>'
+        },
+        'v-b': {
+            template: '<div>This is Component B</div>'
+        }
     }
 })
