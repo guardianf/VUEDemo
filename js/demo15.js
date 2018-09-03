@@ -196,4 +196,53 @@ let app6 = new Vue({
             })
         }
     }
+});
+
+Vue.component('my-transition', {
+    template: `
+      <transition-group
+        name='fade'
+        mode='out-in'
+        @before-enter='beforeEnter'
+        @after-enter='afterEnter'
+      >
+        <slot></slot>
+      </transition-group>
+    `,
+    methods: {
+        beforeEnter(el){
+            el.style.opacity = 0;
+        },
+        afterEnter(el){
+            el.style.opacity = 1;
+        }
+    }
+});
+Vue.component('my-special-transition', {
+    functional: true,
+    render(createElement, context) {
+        var data = {
+            props: {
+                name: 'fade',
+                mode: 'out-in'
+            },
+            on: {
+                beforeEnter(el){
+                    el.style.opacity = 0;
+                    el.style.transition = 'ease 1s'
+                },
+                afterEnter(el) {
+                    el.style.opacity = 1;
+                }
+            }
+        }
+        return createElement('transition', data, context.children)
+    }
+})
+let app7 = new Vue({
+    el: '#app-7',
+    data: {
+        on: true,
+        onn: true
+    }
 })
