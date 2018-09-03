@@ -132,4 +132,68 @@ let app5 = new Vue({
             template: '<div>This is Component B</div>'
         }
     }
+});
+
+let app6 = new Vue({
+    el: '#app-6',
+    data: {
+        items: [1,2,3,4,5,6,7,8],
+        items2: [1,2,3,4,5,6,7,8],
+        nextNum: 10,
+        cells: Array.apply(null, {length: 81}).map((_, index)=>{
+            return {
+                id: index,
+                number: index % 9 + 1
+            }
+        }),
+        query: '',
+        list: [
+          {msg: 'Bruce Lee'},
+          {msg: 'Jackie Chen'},
+          {msg: 'Chuck Norris'},
+          {msg: 'Jet Li'},
+          {msg: 'Kung Fury'},
+          {msg: 'Tom Cruse'},
+        ]
+    },
+    methods: {
+        randomIndex(){
+            return Math.floor(Math.random() * this.items.length)
+        },
+        add(){
+            this.items.splice(this.randomIndex(), 0, this.nextNum ++)
+        },
+        remove(){
+            this.items.splice(this.randomIndex(), 1)
+        },
+        shuffle(){
+            this.items2 = _.shuffle(this.items2)
+        },
+        shuffleMatrix() {
+            this.cells = _.shuffle(this.cells);
+        },
+        beforeEnter(el){
+            el.style.opacity = 0;
+            el.style.height = 0;
+        },
+        enter(el, done){
+            var delay = el.dataset.index * 150
+            setTimeout(()=>{
+                Velocity(el,{opacity: 1,height: '1.6em'},{complete:done})
+            }, delay);
+        },
+        leave(el,done){
+            var delay = el.dataset.index * 150
+            setTimeout(()=>{
+                Velocity(el,{opacity: 0,height: 0},{complete:done})
+            }, delay);
+        }
+    },
+    computed: {
+        computedList(){
+            return this.list.filter((item)=>{
+                return item.msg.toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
+            })
+        }
+    }
 })

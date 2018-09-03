@@ -9,6 +9,7 @@
   <link href='https://cdn.jsdelivr.net/npm/animate.css@3.5.1' rel='stylesheet' type='text/css'>
   <link href='../style/demo15.css' rel='stylesheet' type='text/css'>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js'></script>
   <style>
   * {padding: 0 default;margin: 0;}
   h2 {border-bottom: 1px solid #e2e2e2;}
@@ -185,7 +186,46 @@
   </div>
   <div id='app-6'>
     <h2>列表过渡</h2>
-    
+    <h3># 列表的进入/离开过渡</h3>
+    <button @click='add'>Add</button>
+    <button @click='remove'>Remove</button>
+    <transition-group name='list' tag='p'>
+      <span v-for='item in items' :key='item' class='list-item'>
+        {{item}}
+      </span>
+    </transition-group>
+    <h3># 列表的排序过渡</h3>
+    <button @click='shuffle'>Shuffle</button>
+    <transition-group name='flip-list' tag='ul'>
+      <li v-for='item in items2' :key='item'>
+        {{ item }}
+      </li>
+    </transition-group>
+    <button @click='shuffleMatrix'>Shuffle</button>
+    <transition-group name='flip-list' tag='div' class='cell-container'>
+      <div v-for='cell in cells' :key='cell.id' class='cell'>
+        {{ cell.number }}
+      </div>
+    </transition-group>
+    <h3># 列表的交错过渡</h3>
+    <input v-model='query'>
+    <transition-group
+      name='fade'
+      tag='ul'
+      :css='false'
+      @before-enter='beforeEnter'
+      @enter='enter'
+      @leave='leave'
+    >
+      <li
+        v-for='(item, index) in computedList'
+        :key='item.msg'
+        :data-index='index'
+      >{{ item.msg }}</li>
+    </transition-group>
+  </div>
+  <div id='app-7'>
+    <h2>可复用的过渡</h2>
   </div>
   <script src="../js/demo15.js"></script>
 </body>
