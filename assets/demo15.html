@@ -239,6 +239,31 @@
     <br>
     <strong>关于过渡组件，我们有两种方式来声明。一种是我们普通的template形式，另一种则是通过函数式组件来声明，具体可参考第二种on button的声明方式。</strong>
   </div>
+  <div id='app-8'>
+    <h2>动态过渡</h2>
+    Fade In: <input type='range' v-model='fadeInDuration' min='0' :max='maxFadeDuration'>
+    Fade Out: <input type='range' v-model='fadeOutDuration' min='0' :max='maxFadeDuration'>
+    <transition
+      :css='false'
+      @before-enter='beforeEnter'
+      @enter='enter'
+      @leave='leave'
+    >
+      <p v-if='show'>Hello</p>
+    </transition>
+    <button
+      v-if='stop'
+      @click='stop = false;show = false'
+    >
+      Start animating
+    </button>
+    <button
+      v-else
+      @click='stop=true'
+    >
+      Stop it !!!
+    </button>
+  </div>
   <script src="../js/demo15.js"></script>
 </body>
 </html>

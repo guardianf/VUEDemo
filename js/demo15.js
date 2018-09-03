@@ -246,3 +246,34 @@ let app7 = new Vue({
         onn: true
     }
 })
+
+let app8 = new Vue({
+    el: '#app-8',
+    data: {
+        show: true,
+        fadeInDuration: 1000,
+        fadeOutDuration: 1000,
+        maxFadeDuration: 1500,
+        stop: true
+    },
+    mounted(){
+        this.show = false
+    },
+    methods: {
+        beforeEnter(el){
+            el.style.opacity = 0;
+        },
+        enter(el, done){
+            Velocity(el, {opacity: 1}, {duration: app8.fadeInDuration,complete(){done();if(!app8.stop){app8.show = false;}}})
+        },
+        leave(el, done){
+            Velocity(el, {opacity: 0}, {
+                duration: app8.fadeOutDuration,
+                complete(){
+                    done();
+                    app8.show = true
+                }
+            })
+        }
+    }
+})
