@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/tween.js@16.3.4'></script>
+  <script src='https://cdn.jsdelivr.net/npm/color-js@1.0.3'></script>
+  <title>Demo16-状态过渡</title>
+  <link href='../style/demo16.css' rel='stylesheet' type='text/css'>
+  <style>
+  * {padding: 0 default;margin: 0;}
+  h2 {border-bottom: 1px solid #e2e2e2;}
+  </style>
+</head>
+<body>
+  <h1>状态过渡</h1>
+  <div id='app-1'>
+    <font size='1'>Vue的过渡系统提供了非常多简单的方法设置进入、离开和列表的动效。那么对于数据元素本身的动效呢，比如：</font>
+    <li v-for='item in items'>
+      {{ item }}
+    </li>
+    <font size='1'>所有的原始数字都被事先储存起来，可以直接转换到数字。做到这一步，我们就可以结合Vue的响应式和组件系统，使用第三方库来事先切换元素的过渡状态</font>
+  </div>
+  <div id='app-2'>
+    <h2>状态动画和侦听器</h2>
+    <input v-model.number='number' type='number' step='20'>
+    <p>{{animatedNumber}}</p>
+    <input
+      v-model='colorQuery'
+      @keyup.enter='updateColor'
+      placeholder='Enter a color'
+    >
+    <button @click='updateColor'>Update</button>
+    <p>Preview:</p>
+    <span
+      :style='{backgroundColor: tweenedCSSColor}'
+      class='example-7-color-preview'
+    ></span>
+    <p>{{ tweenedCSSColor }}</p>
+    <svg width='200' height='200'>
+        <polygon :points='points'></polygon>
+        <circle cx='100' cy='100' r='90'></circle>
+    </svg>
+    <label>Sides: {{ sides }}</label>
+    <input type='range' min='3' max='500' v-model.number='sides'>
+    <label>Minimum Radius: {{ minRadius }}%</label>
+    <input type='range' min='0' max='90' v-model.number='minRadius'>
+    <label>Update Interval: {{ updateInterval }}</label>
+    <input type='range' min='10' max='2000' v-model.number='updateInterval'>
+  </div>
+  <div id='app-3'>
+    <h2>把过渡放到组件里</h2>
+      <input v-model.number="firstNumber" type="number" step="20"> +
+      <input v-model.number="secondNumber" type="number" step="20"> =
+      {{ result }}
+      <p>
+        <animated-integer v-bind:value="firstNumber"></animated-integer> +
+        <animated-integer v-bind:value="secondNumber"></animated-integer> =
+        <animated-integer v-bind:value="result"></animated-integer>
+      </p>
+  </div>
+  <div id='app-4'>
+    <h2>赋予设计以生命</h2>
+    <strong>目前这部分的示例代码太过复杂，有空的话请查看<a href='https://cn.vuejs.org/v2/guide/transitioning-state.html#%E8%B5%8B%E4%BA%88%E8%AE%BE%E8%AE%A1%E4%BB%A5%E7%94%9F%E5%91%BD'>示例</a></strong>
+  </div>
+  <script src="../js/demo16.js"></script>
+</body>
+</html>
