@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Demo17-混入</title>
+  <style>
+  * {padding: 0 default;margin: 0;}
+  h2 {border-bottom: 1px solid #e2e2e2;}
+  </style>
+</head>
+<body>
+  <h1>混入</h1>
+  <div id='app-1'>
+    <h2>基础</h2>
+    <strong>具体内容查看控制台以及代码<strong>
+  </div>
+  <div id='app-2'>
+    <h2>选项合并</h2>
+    <strong>具体内容查看控制台以及代码<strong>
+    <p>
+    <button @click='foo'>foo</button>
+    <button @click='bar'>bar</button>
+    <button @click='conflicting'>conflicting</button>
+    </p>
+    <font size='1'>选项合并时，父组件的内容会把mixin的内容覆盖掉</font>
+  </div>
+  <div id='app-3'>
+    <h2>全局混入</h2>
+    <my-button>myButton</my-button>
+  </div>
+  <div id='app-4'>
+    <h2>自定义选项合并策略</h2>
+    <strong>一般情况下可以向Vue.config.optionMergeStrategies添加一个函数</strong>
+    <p>
+    Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
+    // return mergedVal
+    }
+    </p>
+    对于大多数对象选项可以使用methods的合并策略
+    <p>
+    var strategies = Vue.config.optionMergeStrategies
+    strategies.myOption = strategies.methods
+    </p>
+    更多高级例子可以在Vuex的1.x混入策略里找到
+  </div>
+  <script src="../js/demo17.js"></script>
+</body>
+</html>
