@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Demo18-自定义指令</title>
+  <link href='../style/demo18.css' rel='stylesheet' type='text/css'>
+  <style>
+  * {padding: 0 default;margin: 0;}
+  h2 {border-bottom: 1px solid #e2e2e2;}
+  </style>
+</head>
+<body>
+  <h1>自定义指令</h1>
+  <div id='app-1'>
+    <h2>简介</h2>
+    <a>除了核心内置的v-model以及v-show。Vue也允许注册自定义指令。</a>
+    <input v-focus placeholder='加载页面时自动聚焦'>
+  </div>
+  <div id='app-2'>
+    <h2>钩子函数</h2>
+    <list></list>
+  </div>
+  <script src="../js/demo18.js"></script>
+</body>
+</html>
