@@ -23,6 +23,20 @@
     <h2>钩子函数</h2>
     <list></list>
   </div>
+  <div id='app-3'>
+    <h2>钩子函数参数</h2>
+    <list3 :children='children'></list3>
+    <div v-demo:foo.a.b='message'></div>
+  </div>
+  <div id='app-4'>
+    <h2>函数简写</h2>
+    <div v-color-swatch:foo='color'>this is functional directive</div>
+  </div>
+  <div id='app-5'>
+    <h2>对象字面量</h2>
+    <div v-demo2="{color: 'white', text: 'hello!'}">查看控制台</div>
+    <strong>但是很奇怪 console.log是能够打印出文字的内容，使用alert就不能.难道说alert调用模式和console.log不一样么？</strong>
+  </div>
   <script src="../js/demo18.js"></script>
 </body>
 </html>
