@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Demo19-渲染函数&JSX</title>
+  <style>
+  * {padding: 0 default;margin: 0;}
+  h2 {border-bottom: 1px solid #e2e2e2;}
+  </style>
+  <script type='text/x-template' id='anchored-heading-template'>
+    <h1 v-if='level === 1'>
+      <slot></slot>
+    </h1>
+    <h2 v-else-if='level === 2'>
+      <slot></slot>
+    </h2>
+    <h3 v-else-if='level === 3'>
+      <slot></slot>
+    </h3>
+    <h4 v-else-if='level === 4'>
+      <slot></slot>
+    </h4>
+    <h5 v-else-if='level === 5'>
+      <slot></slot>
+    </h5>
+    <h6 v-else-if='level === 6'>
+      <slot></slot>
+    </h6>
+  </script>
+</head>
+<body>
+  <h1>渲染函数 & JSX</h1>
+  <div id='app-1'>
+    <h2>基础</h2>
+    <anchored-heading :level='3'>x-template to regist a component</anchored-heading>
+    <anchored-heading2 :level='5'>render function to regist a component</anchored-heading2>
+  </div>
+  <div id='app-2'>
+    <h2>节点、树以及虚拟DOM</h2>
+    <bdi>简单的render函数</bdi>
+    <input v-model='title'>
+    <vertual-dom :blog-title='title'></vertual-dom>
+    <h3># 虚拟 DOM</h3>
+    <p>查看控制台可得知，createElement所返回的内容是一个vnode对象，我们可以称之为虚拟节点</p>
+  </div>
+  <div id='app-3'>
+    <h2>createElement参数</h2>
+    <create-element-demo></create-element-demo>
+    <strong>可以看到这里createElement的三个参数，第一个是根元素，第二个参数是data属性，第三个参数是其子vnode节点</strong>
+    <h3># 深入 data 对象</h3>
+    <create-element-data>create-data-test</create-element-data>
+    <strong>在render中增加directives的时候，该自定义指令一定要被注册过。</strong>
+    <h3># 完整示例</h3>
+    <anchored-heading3 :level='1'>this is created by render function</anchored-heading3>
+    <strong>之前一直报this.$slot.default的错，主要原因是找不到slot.default 而default的内容就是我们自定义组件的内容，如果标签内不存在内容则default内容不存在</strong>
+    <h3># 约束</h3>
+    <b>VNode必须唯一</b>
+    测试1:
+    <multi-child></multi-child>
+    测试2:
+    <multi-child-2></multi-child-2>
+    <strong>虽然现在都没搞清楚为什么测试1为什么说是无效 但是却真实的render出来了</strong>
+  </div>
+  <div id='app-4'>
+    <h2>使用Javascript代替模板功能</h2>
+    <h3># v-if & v-for</h3>
+    <demo-js-instead :items='items'></demo-js-instead>
+    <h3># v-model</h3>
+    <model-js-instead v-model='value'></model-js-instead>
+    <label>this is value: {{value}}</label>
+    <h3># 事件 & 按键修饰符</h3>
+    <modifier-js-instead></modifier-js-instead>
+    <strong>除了passive、capture、once这几个其他的处理方式都可以通过js来实现</strong>
+    <h3># 插槽</h3>
+    <slot-js-instead><a>this is a in a slot component</a></slot-js-instead>
+    <slot-js-instead-2 :message='value'>
+      <template slot-scope='scope1'>
+        <a>{{scope1.text}}</a>
+      </template>
+    </slot-js-instead-2>
+    <strong>之前一直没成功，后来才发现原来是在组件的slot部分没有增加template的slot-scope的内容，增加完后就能完整显示了</strong>
+    <slot-js-instead-3 :message='message'>
+      <template slot-scope='scope2'>
+        <a>{{scope2.text}}</a>
+      </template>
+    </slot-js-instead-3>
+    <strong>搞了两天，终于搞明白pass scopedSlots的方式，需要父组件render的时候对子组件传递props然后把获取到的值传过去，然后子组件通过绑定传递的props给slot来完成整个数据的传送</strong>
+  </div>
+  <h2>JSX</h2>
+  <a>更多内容参考Babel插件</a>
+  <div id='app-5'>
+    <h2>函数式组件</h2>
+    <a>标记为functional意味着他是无状态，无响应试图，无实例</a>
+    <functional-demo :message='message'></functional-demo>
+    <strong>在functional组件里，render函数增加了第二个参数，增加了context,this.message变成了context.props.message.其他类似。</strong>
+    <functional-demo2 :message='message2'></functional-demo2>
+    <strong>从这个例子可以看到，如果functional:true的话，有template是会报错的，原因是缺少render函数，而render函数会替代template.</strong>
+    <h3># 向子元素或自组件传递特性和事件</h3>
+    <functional-button @click='alert(3)'><a>这是个测试</a></functional-button>
+  </div>
+  <div id='app-6'>
+    <h2>模版编译</h2>
+  </div>
+  <script src="../js/demo19.js"></script>
+</body>
+</html>
