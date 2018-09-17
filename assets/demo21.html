@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <title>Demo21-过滤器</title>
+  <style>
+  * {padding: 0 default;margin: 0;}
+  h2 {border-bottom: 1px solid #e2e2e2;}
+  </style>
+</head>
+<body>
+  <h1>过滤器</h1>
+  <textarea disabled='true' style='height: 40px;width: 300px;resize: none;'>
+    {{ message | capitalize}}
+    <div v-bind:id='rawId | formatId'></div>
+  </textarea>
+  <div id='app-1'>
+    <input v-model='value'>
+    {{ value | filterA | filterB}}
+    <div :title='value | filterB | filterA'>把鼠标移动过来</div>
+    <strong>从这里可以看到，我们的filter使用的顺序从左到右.并且查看代码可以看到有两种不同的申明方式。</strong>
+    <div :title='value | filterC("pre","end")'> {{ value | filterC('St', 'nD')}}</div>
+  </div>
+  <script src="../js/demo21.js"></script>
+</body>
+</html>
